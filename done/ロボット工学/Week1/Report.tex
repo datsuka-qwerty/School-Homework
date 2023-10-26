@@ -1,0 +1,56 @@
+\documentclass[a4j, uplatex, fleqn]{jsarticle}
+% グラフ関係
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{color}
+% 数式関係
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+% 数式番号を(セクション番号.式番号)の形式にする e.g. (2.1)
+% \numberwithin{equation}{section}
+% 表でHを使う
+\usepackage{float}
+% セルに斜線を入れる
+\usepackage{diagbox}
+% セル結合を使えるようにする
+\usepackage{booktabs, multirow}
+% 複数ページに渡る表を作る
+\usepackage{longtable}
+% 参考文献用
+\usepackage{url}
+% bulletより小さい丸,sbt
+\newcommand{\sbt}{\,\begin{picture}(-1,1)(-1,-3)\circle*{3}\end{picture}\ }
+
+\title{\vspace{-5cm}ロボット工学課題1}
+\author{5年L組23番 塚田蓮大}
+\date{}
+
+\begin{document}
+	\maketitle
+
+	\begin{align*}
+		&\text{モータへ引火する電圧$E_M$は} \\
+		&E_M = ( (K_{VS}) + K_P + K_I \frac{1}{S} ) (\theta_d - \theta) = K_{VS}\theta_d + K_P \theta_d + K_I \frac{1}{S}\theta_d - K_P \theta - K_I \frac{1}{S} \theta \tag{1} \\
+		&\text{時間関数に書き直すと、}\\
+		&E_M = K_V \frac{d\theta_d}{df} + K_P \theta_d + K_I \int_{0}^{t} \theta_d dt - K_V \frac{d\theta_d}{dt} - K_P\theta - K_I \int_{0}^{t} \theta dt \tag{2} \\
+		&\text{目標値が変化しないため、$\frac{d\theta_d}{dt}=0$従って} \\
+		&E_M = -K_P(\theta - \theta_d) - K_V\frac{d\theta}{dt} - K_I \int_{0}^{t}(\theta - \theta_d) dt \tag{3}\label{3} \\
+		&\text{サーボモータにおいて}\\
+		&\theta = [\frac{K_I}{R_M} (E_M - K_E \dot{\theta}) + t_d]\frac{1}{J_S} \times \frac{1}{S} = \frac{1}{J_S^2}(\frac{K_T}{R_M}E_M - \frac{K_E K_T}{R_M}s\theta + t_d) \tag{4} \\
+		&\text{\ref{3}を代入し、時間関数をラプラス変換すると}\\
+		&\theta = \frac{1}{J_S^2} [\frac{K_T}{R_M}(-K_P(\theta - \theta_d)-K_VS\theta - K_I\frac{1}{S}(\theta - \theta_d)) - \frac{K_E K_T}{R_M}s\theta + t_d] \\
+		&J_S^2\theta + \frac{K_E K_T}{R_M}s\theta - \frac{K_T}{R_M}(-K_P(\theta - \theta_d) - K_Vs\theta - K_I\frac{1}{S}(\theta - \theta_d)) = t_d \\
+		&J_S^2\theta + (\frac{K_E K_T}{R_M} + \frac{K_T K_V}{R_M})s\theta + \frac{K_P K_T}{R_M}\theta + \frac{K_I K_T}{R_M} \times \frac{1}{S}\theta = \frac{K_P K_T}{R_M}\theta_d + \frac{K_I K_T}{R_M} \times \frac{1}{S} \theta_d + t_d \\
+		&\therefore \theta_d = -\frac{1}{\frac{K_P K_T}{R_M} + \frac{K_I K_T}{R_M} - \frac{1}{S}}t_d + \frac{R_MJ}{\frac{K_P K_T}{R_M} + \frac{K_I K_T}{R_M} - \frac{1}{S}}s\theta + \theta \\
+		&G(S) = \frac{\theta}{\theta_d} = \frac{\frac{K_P K_T}{R_M} + \frac{K_I K_T}{R_M} - \frac{1}{S}}{R_MJS^2 + (\frac{K_E K_T}{R_M} + \frac{K_T K_V}{R_M})s} t_d=0\text{のときの}\theta_d \text{からの} \theta \text{への伝達関数}\\
+		&G(S) = \frac{\theta}{\theta_d} = \frac{\frac{K_P K_T}{R_M} + \frac{K_I K_T}{R_M} - \frac{1}{S}}{R_MJS^2 + (\frac{K_E K_T}{R_M} + \frac{K_T K_V}{R_M})S} \rightarrow \frac{b}{s^2 + as +b}\text{の形になる}\\
+		&\text{位置偏差}e_p \\
+		&e_p(t) = \theta_d - \theta(t) \text{として、ラプラス変換} \\
+		&e_p(s) = -cG(s)t_d(s) \text{となる} \\
+		&\text{したがって、定常位置偏差は} \\
+		&e_p(\infty) = \lim_{s \to 0} (-scG(S) \frac{t_d}{S}) = -a_0 t_d \\
+		&\text{PIDフィードバックは}\\
+		&e_p(s) = \frac{-acs}{s^2 + bs^2 + as + a\frac{K_I}{K_P}}t_d (s) \\
+		&e_p(\infty) = 0
+	\end{align*}
+\end{document}

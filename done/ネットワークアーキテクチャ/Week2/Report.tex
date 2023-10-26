@@ -1,0 +1,67 @@
+\documentclass[a4j,uplatex]{jsarticle}
+% グラフ関係
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{color}
+% 数式関係
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+% 数式番号を(セクション番号.式番号)の形式にする e.g. (2.1)
+\numberwithin{equation}{section}
+% 表でHを使う
+\usepackage{float}
+% セルに斜線を入れる
+\usepackage{diagbox}
+% セル結合を使えるようにする
+\usepackage{booktabs, multirow}
+% 複数ページに渡る表を作る
+\usepackage{longtable}
+% 参考文献用
+\usepackage{url}
+% bulletより小さい丸,sbt
+\newcommand{\sbt}{\,\begin{picture}(-1,1)(-1,-3)\circle*{3}\end{picture}\ }
+
+\title{コンピュータアーキテクチャ2週目課題}
+\author{5年L組23番 塚田蓮大}
+\date{\today}
+
+\begin{document}
+	\maketitle
+
+	\section{ノイマン型コンピュータの基本}
+		ノイマン型コンピュータには大きく3つの特徴がある。
+		\begin{enumerate}
+			\item プログラム記憶方式 \mbox{}\\
+				プログラムを内部のメモリに格納することで、プログラムの入力・変更を簡単に
+			\item 逐次処理方式  \mbox{}\\
+				原則、命令は実行順にメモリに格納する。順次取り出し、処理を実行する。\\
+				取り出す命令のアドレスは、プログラムカウンタによって指示される。
+			\item 単一メモリ方式 \mbox{}\\
+				プログラムとデータは、同じメモリに格納。メモリにはアドレスが割り当てられる。 \\
+				一時的なデータ格納領域として、レジスタを備える。
+		\end{enumerate}
+	\section{ノイマン型コンピュータの基本構成}
+		ノイマン型コンピュータには5つの基本的な役割から成る。
+		\begin{enumerate}
+			\item 演算装置 \mbox{}\\
+				算術演算・論理演算を行う。
+			\item 制御装置 \mbox{}\\
+				全ての装置の制御する装置。
+			\item 記憶装置 \mbox{}\\
+				データやプログラムを記憶する装置。一般的にRAMと呼ばれる主記憶装置と、SSD・HDDなどが使われる補助記憶装置から成る。
+			\item 入力装置 \mbox{}\\
+				プログラムやデータを主記憶装置に入力するための装置。
+			\item 出力装置 \mbox{}\\
+				処理された結果を出力する装置
+		\end{enumerate}
+		また、演算装置・制御装置を2つ合わせて中央処理装置(CPU:Central Processing Unit)と呼称する。
+	% \section{ノイマン型コンピュータの基本動作}
+	% 	\begin{enumerate}
+	% 		\item PCに格納されたアドレスをMAR(メモリアドレスレジスタ)に送る。
+	% 		\item 指定アドレスの命令をIR(命令ジスタ)に取り出す。
+	% 		\item IRの命令をDEC(デコーダ)に送り復号。
+	% 		\item 命令の実行に必要な制御信号を出力。
+	% 		\item 制御信号に従い演算等の処理を実行。
+	% 		\item 次の命令が格納されたアドレスをPCにセットする。
+	% 	\end{enumerate}
+\end{document}

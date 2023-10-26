@@ -1,0 +1,124 @@
+\documentclass[a4j,uplatex]{jsarticle}
+% 段落初めの余白を削除
+% \setlength\parindent{0pt}
+% 行間のポイント数調整
+\renewcommand{\baselinestretch}{0.8}
+% グラフ関係
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{color}
+% 数式関係
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+% 数式番号を(セクション番号.式番号)の形式にする e.g. (2.1)
+\numberwithin{equation}{section}
+% 表でHを使う
+\usepackage{float}
+% セルに斜線を入れる
+\usepackage{diagbox}
+% セル結合を使えるようにする
+\usepackage{booktabs, multirow}
+% 複数ページに渡る表を作る
+\usepackage{longtable}
+% 参考文献用
+\usepackage{url}
+% bulletより小さい丸,sbt
+\newcommand{\sbt}{\,\begin{picture}(-1,1)(-1,-3)\circle*{3}\end{picture}\ }
+
+\title{\vspace{-5cm}ネットワークアーキテクチャ3週目課題命令セットについて}
+\author{5年L組23番 塚田蓮大}
+\date{\today}
+
+\begin{document}
+	\maketitle
+
+	命令セットとはCPUが備えている命令の一覧を指す。使いたいCPUがどのような操作を行えるのかを調べる際に用いる。\\
+	以下は情報処理技術者試験用に想定されたコンピュータ向けのアセンブラ言語(CASL Ⅱ)の命令セットである。
+	\begin{enumerate}
+		\item ロード、ストア、ロードアドレス命令 \mbox{}\\
+			・レジスタやメモリ間などのデータ移動を行う命令
+		\item 算術・論理演算命令
+		\item 比較演算命令 \mbox{}\\
+			・2個のデータの大小を比較し、その結果をフラグレジスタFRに反映する命令
+		\item 分岐命令 \mbox{}\\
+			・条件分岐命令(FRの状態に応じた分岐)と無条件分岐命令(FRの状態によらない分岐)
+		\item スタック操作命令 \mbox{}\\
+			・PUSHとPOPの命令
+		\item コール、リターン命令 \mbox{}\\
+			・サブルーチンの呼び出し、復帰命令
+		\item その他
+	\end{enumerate}
+	\begin{table}[htbp]
+		\begin{minipage}[c]{0.5\hsize}
+			\centering
+			\caption{ロード、ストア、ロードアドレス命令}
+			\begin{tabular}{|c|c|}
+				\hline ロード LoaD & LD \\ \hline
+				ストア STore & ST \\ \hline
+				ロードアドレス LoadADdress & LAD \\ \hline
+			\end{tabular}
+		\end{minipage}
+		\begin{minipage}[c]{0.5\hsize}
+			\centering
+			\caption{算術、論理演算命令}
+			\begin{tabular}{|c|c|}
+				\hline 算術加算 ADD Artihmetic & ADDA \\ \hline
+				論理加算 ADD Logical & ADDL \\ \hline
+				算術減算 SUBtract Arithmetic & SUBA \\ \hline
+				論理減算 SUB Logical & SUBL \\ \hline
+				論理積 AND & AND \\ \hline
+				論理和 OR & OR \\ \hline
+				排他的論理和 eXclusive OR & XOR \\ \hline
+			\end{tabular}
+		\end{minipage}
+		\begin{minipage}[c]{0.5\hsize}
+			\centering
+			\caption{比較演算命令}
+			\begin{tabular}{|c|c|}
+				\hline 算術比較 ComPare Arithemetic & CPA \\ \hline
+				論理費 ComPare Logical & CPL \\ \hline
+			\end{tabular}
+		\end{minipage}
+		\begin{minipage}[c]{0.5\hsize}
+			\centering
+			\caption{分岐命令}
+			\begin{tabular}{|c|c|}
+				\hline 正分岐 Jump on PLus & JPL \\ \hline
+				負分岐 Jmp on MInus & JMI \\ \hline
+				非零分岐 Jump on Non Zero & JNZ \\ \hline
+				零分岐 Jump on ZEro & JZE \\ \hline
+				オーバーフロー分岐 Jump on OVerflow & JOV \\ \hline
+				無条件分岐 unconditional JUMP & JUMP \\ \hline
+			\end{tabular}
+		\end{minipage}
+	\end{table}
+	\begin{table}[htbp]
+		\begin{minipage}[c]{0.5\hsize}
+			\centering
+			\caption{スタック操作命令}
+			\begin{tabular}{|c|c|}
+				\hline プッシュ PUSH & PUSH \\ \hline
+				ポップ POP & POP \\ \hline
+			\end{tabular}
+		\end{minipage}
+		\begin{minipage}[c]{0.5\hsize}
+			\centering
+			\caption{コール、リターン命令}
+			\begin{tabular}{|c|c|}
+				\hline コール CALL subroutine & CALL \\ \hline
+				リターン RETurn from subroutine & RET \\ \hline
+			\end{tabular}
+		\end{minipage}
+		\begin{minipage}[c]{0.5\hsize}
+			\centering
+			\caption{その他}
+			\begin{tabular}{|c|c|}
+				\hline スーパーバイザコール SuperVisor Call & SVC \\ \hline
+				ノーオペレーション No OPeration & NOP \\ \hline
+			\end{tabular}
+		\end{minipage}
+	\end{table}
+	\begin{table}
+		
+	\end{table}
+\end{document}
