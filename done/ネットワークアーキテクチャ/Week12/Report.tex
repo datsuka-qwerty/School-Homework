@@ -1,0 +1,64 @@
+\documentclass[a4j,uplatex]{jsarticle}
+% グラフ関係
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{color}
+% 画像の余白を調整
+\setlength\intextsep{0pt}
+\setlength\textfloatsep{0pt}
+% 数式関係
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+% 数式番号を(セクション番号.式番号)の形式にする e.g. (2.1)
+\numberwithin{equation}{section}
+% 表でHを使う
+\usepackage{float}
+% セルに斜線を入れる
+\usepackage{diagbox}
+% セル結合を使えるようにする
+\usepackage{booktabs, multirow}
+% 複数ページに渡る表を作る
+\usepackage{longtable}
+% 参考文献用
+\usepackage{url}
+% bulletより小さい丸,sbt
+\newcommand{\sbt}{\,\begin{picture}(-1,1)(-1,-3)\circle*{3}\end{picture}\ }
+
+\title{\vspace{-5cm}ネットワークアーキテクチャ12週目課題 システムアーキテクチャについて}
+\author{5年L組23番 塚田蓮大}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{システムアーキテクチャとは}
+\begin{itemize}
+	\item OSについて \mbox{}\\
+	      OS(Operating System)とは、ハードウェアと密接に関わりながら、利用しやすいシステム環境を構築するソフトウェアである。(e.g. Windows, Mac OS, Linux)
+	\item OSの目的 \mbox{}\\
+	      \begin{itemize}
+		      \item 開発者からみたOS \mbox{}\\
+		            様々なアプリケーションで共通する機能は、アプリケーション毎に用意するのではなく、OSが提供して欲しい。
+		            ->必要な機能をAPI(Application Programming Interface)として提供する。
+		      \item ユーザーからみたOS \mbox{}\\
+		            様々なアプリケーションでも操作感は同じであって欲しい。
+		            ->ユーザーの操作環境をOSが提供し、操作をある程度共通化する。また、GUIにより直感的でわかりやすい操作を実現する。
+	      \end{itemize}
+	\item プロセス管理 \mbox{}\\
+	      \begin{itemize}
+		      \item プロセスの種類 \mbox{}\\
+		            \begin{itemize}
+			            \item OSプロセス \mbox{}\\
+			                  OSから発生した特権モードで実行されれるプロセス\\
+			                  ユーザモードで実⾏されるプログラムからの割込みにより起動する
+			            \item ユーザープロセス \mbox{}\\
+			                  ユーザモードで実⾏されるプロセス\\
+			                  OSによって起動される
+		            \end{itemize}
+		      \item プロセススケジューラ \mbox{}\\
+		            OSが持つプロセス管理機能であり、プロセスの状態管理、• 実⾏するプロセスの選択と選択したプロセスへのCPUの割り当てを行う。
+	      \end{itemize}
+\end{itemize}
+\section*{初めて使ったOS}
+初めて使ったOSはWidnows98である。
+\end{document}
